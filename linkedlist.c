@@ -33,6 +33,16 @@ static inline bool list__is_empty(list_t *list)
     return ((NULL == list->head) && (NULL == list->tail) && (0 == list->node_num));
 }
 
+static inline bool list__is_node_tail(node_t *node,list_t *list)
+{
+    return (node == list->tail);
+}
+
+static inline bool list__is_node_head(node_t *node,list_t *list)
+{
+    return (node == list->head);
+}
+
 void add_node_f(list_t *list)
 {
     node_t *node = create_new_node_f(rand());
@@ -52,14 +62,29 @@ void add_node_f(list_t *list)
 
 void delete_node_f(list_t *list, node_t *node)
 {
-    node_t *_temp;
     if( false == list__is_empty(list))
     {
-        _temp = node->next;
-        free(node);
-        node = _temp;
-        list->node_num--;
+        if(list__is_node_head(node, list))
+        {
+            list->head = list->head->next;
+            list->head->prev = NULL;
+            free(node);
+        }
+        else if(list__is_node_tail(node, list))
+        {
+            list->tail = list->tail->prev;
+            list->tail->next = NULL;
+            free(node);
+        }
+        else
+        {
+            node->prev->next = node->next;
+            node->next->prev = node->prev;
+
+            free(node);
+        }
     }
+
 }
 
 int list_length_f(list_t *list)

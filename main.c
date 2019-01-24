@@ -20,8 +20,9 @@ int main()
     add_node_f(newlist);
     add_node_f(newlist);
     //node_t *node = create_new_node_f(5);
-    printf("node address - %d\n",newlist->head);
-    printf("next node pointer address - %d\n", previous_node(newlist->tail,newlist));
+    //printf("node address - %d\n",newlist->head);
+    //printf("next node pointer address - %d\n", previous_node(newlist->tail,newlist));
+    delete_node_f(newlist,newlist->tail);
 }
 
 

@@ -6,7 +6,7 @@
 
 typedef struct node_s {
     struct node_s *next;
-    struct node_t *prev;
+    struct node_s *prev;
     uint32_t value;
 } node_t;
 
