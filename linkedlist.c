@@ -10,7 +10,7 @@
 
 node_t *create_new_node_f(uint32_t value_u)
 {
-    node_t *node = (node_t*)malloc(sizeof(node_t));
+    node_t *node = (node_t *)malloc(sizeof(node_t));
     node->next = NULL;
     node->prev = NULL;
     node->value = value_u;
@@ -20,7 +20,7 @@ node_t *create_new_node_f(uint32_t value_u)
 
 list_t *create_list_f(void)
 {
-    list_t *list = (list_t*)malloc(sizeof(list_t));
+    list_t *list = (list_t *)malloc(sizeof(list_t));
     list->head = NULL;
     list->tail = NULL;
     list->node_num = 0;
