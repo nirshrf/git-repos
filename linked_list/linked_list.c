@@ -121,3 +121,23 @@ uint32_t LINKED_LIST__get_node_value(node_t *node)
     return node->value;
 }
 
+
+void LINKED_LIST__delete_all(list_t *list)
+{
+    node_t *temp_node;
+    temp_node = list->head;
+
+    while(temp_node != list->tail)
+    {
+        list->head = list->head->next;
+        free(temp_node);
+        temp_node = list->head;
+    }
+
+    free(temp_node);
+    free(list);
+
+}
+
+
+
