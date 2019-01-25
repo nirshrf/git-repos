@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "list.h"
-#include "linkedlist.h"
+#include "linked_list.h"
 
 /**
  * TODO:
@@ -16,13 +16,13 @@
 
 int main()
 {
-    list_t *newlist = create_list_f();
-    add_node_f(newlist);
-    add_node_f(newlist);
+    list_t *newlist = LINKED_LIST__create_list();
+    LINKED_LIST__add_node(newlist);
+    LINKED_LIST__add_node(newlist);
     //node_t *node = create_new_node_f(5);
     //printf("node address - %d\n",newlist->head);
     //printf("next node pointer address - %d\n", previous_node(newlist->tail,newlist));
-    delete_node_f(newlist,newlist->tail);
+    LINKED_LIST__delete_node(newlist,newlist->tail);
 }
 
 
