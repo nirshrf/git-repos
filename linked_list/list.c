@@ -54,15 +54,32 @@ void LIST__delete_node(list_t *list, node_t *node)
 {
     if( false == list__is_empty(list))
     {
+		--list->node_num;
         if(list__is_node_head(node, list))
         {
-            list->head = list->head->next;
-            list->head->prev = NULL;
+			if (list->head->next != NULL)
+			{
+				list->head = list->head->next;
+				list->head->prev = NULL;
+			}
+			else
+			{
+				list->head = NULL;
+				list->tail = NULL;
+			}
         }
         else if(list__is_node_tail(node, list))
         {
-            list->tail = list->tail->prev;
-            list->tail->next = NULL;
+			if (list->tail->prev != NULL)
+			{
+				list->tail = list->tail->prev;
+				list->tail->next = NULL;
+			}
+			else
+			{
+				list->head = NULL;
+				list->tail = NULL;
+			}
         }
         else
         {
@@ -116,6 +133,7 @@ void LIST__clear_list(list_t *list)
 	
 	list->head = NULL;
 	list->tail = NULL;
+	list->node_num = 0;
 
 }
 
