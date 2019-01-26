@@ -23,11 +23,13 @@ int main()
 
 	printf("this is the value of the node - %d , %d, %d \n", NODE__get_node_value(newlist->head), NODE__get_node_value(newlist->head->next), NODE__get_node_value(newlist->head->next->next));
 
-	LIST__clear_nodes(newlist);
+	//LIST__clear_nodes(newlist);
 
 	printf("this is the value of the node - %d , %d, %d \n", NODE__get_node_value(newlist->head), NODE__get_node_value(newlist->head->next), NODE__get_node_value(newlist->head->next->next));
 
 	LIST__delete_node(newlist, newlist->head);
+
+	printf("this is the value of the node - %d \n", NODE__get_node_value(newlist->head));
 
     LIST__delete_list(newlist);
 	

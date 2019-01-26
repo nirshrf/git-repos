@@ -54,7 +54,7 @@ void LIST__delete_node(list_t *list, node_t *node)
 {
 	if( false == list__is_empty(list))
 	{
-		if (LIST__list_length(list) == list->node_num)
+		if (1 == LIST__list_length(list))
 		{
 			list->head = NULL;
 			list->tail = NULL;
