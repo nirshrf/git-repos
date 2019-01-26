@@ -54,7 +54,6 @@ void LIST__delete_node(list_t *list, node_t *node)
 {
 	if( false == list__is_empty(list))
 	{
-		--list->node_num;
 		if(1 == list->node_num)
 		{
 			list->head = NULL;
@@ -78,6 +77,7 @@ void LIST__delete_node(list_t *list, node_t *node)
 			node->prev->next = node->next;
 			node->next->prev = node->prev;   
 		}
+		--list->node_num;
 		free(node);
 	}
 }
