@@ -5,31 +5,34 @@
 #include "list.h"
 #include "node.h"
 
-node_t *NODE__create_node(uint32_t value_u)
+struct node_s *NODE__create_node(void)
 {
     node_t *node = (node_t *)malloc(sizeof(node_t));
     node->next = NULL;
     node->prev = NULL;
-    node->value = value_u;
+    node->value = 0;
 
     return node;
 }
 
-node_t *NODE__next_node(node_t *node, list_t *list)
+void NODE_update_value(struct node_s *node, uint32_t value)
 {
-	if (list->tail == node)
-		return NULL;
+	node->value = value;
+}
+
+struct node_s *NODE__next_node(struct node_s *node, struct list_s *list)
+{
+	if (list->tail == node) return NULL;
 	return node->next;
 }
 
-node_t *NODE__previous_node(node_t *node, list_t *list)
+struct node_s *NODE__previous_node(struct node_s *node, struct list_s *list)
 {
-	if (list->head == node)
-		return NULL;
+	if (list->head == node) return NULL;
 	return node->prev;
 }
 
-uint32_t NODE__get_node_value(node_t *node)
+uint32_t NODE__get_node_value(struct node_s *node)
 {
 	return node->value;
 }

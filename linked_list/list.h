@@ -18,9 +18,11 @@ typedef struct list_s {
 list_t *LIST__create_list(void);
 void LIST__add_node(list_t *list);
 void LIST__delete_node(list_t *list, node_t *node);
-int LIST__list_length(list_t *list);
+uint32_t LIST__list_length(list_t *list);
 node_t *LIST__first_node(list_t *list);
 node_t *LIST__last_node(list_t *list);
-void LIST__delete_all(list_t *list);
+void LIST__clear_nodes(list_t *list);
+void LIST__clear_list(list_t *list);
+void LIST__delete_list(list_t *list);
 
 #endif // LIST_H_INCLUDED

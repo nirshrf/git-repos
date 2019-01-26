@@ -13,9 +13,10 @@ typedef struct node_s {
     uint32_t value;
 } node_t;
 
-node_t *NODE__create_node(uint32_t value_u);
-node_t *NODE__next_node(node_t *node, list_t *list);
-node_t *NODE__previous_node(node_t *node, list_t *list);
-uint32_t NODE__get_node_value(node_t *node);
+struct node_s *NODE__create_node(void);
+void NODE_update_value(struct node_s *node, uint32_t value);
+struct node_s *NODE__next_node(struct node_s *node, struct list_s *list);
+struct node_s *NODE__previous_node(struct node_s *node, struct list_s *list);
+uint32_t NODE__get_node_value(struct node_s *node);
 
 #endif // NODE_H_INCLUDED

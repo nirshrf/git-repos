@@ -58,26 +58,23 @@ void LIST__delete_node(list_t *list, node_t *node)
         {
             list->head = list->head->next;
             list->head->prev = NULL;
-            free(node);
         }
         else if(list__is_node_tail(node, list))
         {
             list->tail = list->tail->prev;
             list->tail->next = NULL;
-            free(node);
         }
         else
         {
             node->prev->next = node->next;
-            node->next->prev = node->prev;
-
-            free(node);
+            node->next->prev = node->prev;   
         }
+		free(node);
     }
 
 }
 
-int LIST__list_length(list_t *list)
+uint32_t LIST__list_length(list_t *list)
 {
     return list->node_num;
 }
@@ -92,21 +89,49 @@ node_t *LIST__last_node(list_t *list)
     return list->tail;
 }
 
+void LIST__clear_nodes(list_t *list)
+{
+	node_t *temp_node;
+	temp_node = list->head;
+
+	while (NULL != temp_node)
+	{	
+		temp_node->value = 0;
+		temp_node = temp_node->next;
+	}
+}
 
 
-void LIST__delete_all(list_t *list)
+void LIST__clear_list(list_t *list)
+{
+	node_t *temp_node;
+	temp_node = list->head;
+
+	while (NULL != temp_node)
+	{
+		list->head = list->head->next;
+		free(temp_node);
+		temp_node = list->head;
+	}
+	
+	list->head = NULL;
+	list->tail = NULL;
+
+}
+
+
+void LIST__delete_list(list_t *list)
 {
     node_t *temp_node;
     temp_node = list->head;
 
-    while(temp_node != list->tail)
+    while(NULL != temp_node)
     {
         list->head = list->head->next;
         free(temp_node);
         temp_node = list->head;
     }
 
-    free(temp_node);
     free(list);
 
 }
