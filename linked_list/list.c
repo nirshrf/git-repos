@@ -54,24 +54,21 @@ void LIST__delete_node(list_t *list, node_t *node)
 {
 	if( false == list__is_empty(list))
 	{
-		if(1 == list->node_num)
+		if (1 == list->node_num)
 		{
 			list->head = NULL;
 			list->tail = NULL;
 		}
-		else if(2 == list->node_num)
+		else if (list__is_node_head)
 		{
-			if (list__is_node_head(node, list))
-			{
-				list->head = list->tail;
-				list->head->prev = NULL;
-			}
-			else if (list__is_node_tail(node, list))
-			{
-				list->tail = list->head;
-				list->tail->next = NULL;
-			}
-		}		
+			list->head = node->next;
+			list->head->prev = NULL;
+		}
+		else if (list__is_node_tail)
+		{
+			list->tail = node->prev;
+			list->tail->next = NULL;
+		}	
 		else
 		{
 			node->prev->next = node->next;
