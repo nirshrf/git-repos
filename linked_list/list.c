@@ -52,43 +52,34 @@ void LIST__add_node(list_t *list)
 
 void LIST__delete_node(list_t *list, node_t *node)
 {
-    if( false == list__is_empty(list))
-    {
+	if( false == list__is_empty(list))
+	{
 		--list->node_num;
-        if(list__is_node_head(node, list))
-        {
-			if (list->head->next != NULL)
+		if(1 == list->node_num)
+		{
+			list->head = NULL;
+			list->tail = NULL;
+		}
+		else if(2 == list->node_num)
+		{
+			if (list__is_node_head(node, list))
 			{
-				list->head = list->head->next;
+				list->head = list->tail;
 				list->head->prev = NULL;
 			}
-			else
+			else if (list__is_node_tail(node, list))
 			{
-				list->head = NULL;
-				list->tail = NULL;
-			}
-        }
-        else if(list__is_node_tail(node, list))
-        {
-			if (list->tail->prev != NULL)
-			{
-				list->tail = list->tail->prev;
+				list->tail = list->head;
 				list->tail->next = NULL;
 			}
-			else
-			{
-				list->head = NULL;
-				list->tail = NULL;
-			}
-        }
-        else
-        {
-            node->prev->next = node->next;
-            node->next->prev = node->prev;   
-        }
+		}		
+		else
+		{
+			node->prev->next = node->next;
+			node->next->prev = node->prev;   
+		}
 		free(node);
-    }
-
+	}
 }
 
 uint32_t LIST__list_length(list_t *list)
