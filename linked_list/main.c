@@ -3,14 +3,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "list.h"
-#include "linked_list.h"
-
-/**
- * TODO:
- * rename function names
- * Add static to static function
- */
-
+#include "node.h"
 
 // Main
 

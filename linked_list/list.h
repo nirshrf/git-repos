@@ -2,14 +2,11 @@
 #define LIST_H_INCLUDED
 
 
-
-
-typedef struct node_s {
-    struct node_s *next;
-    struct node_s *prev;
-    uint32_t value;
-} node_t;
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include "node.h"
 
 
 typedef struct list_s {
@@ -17,5 +14,13 @@ typedef struct list_s {
 	struct node_s *tail;
     uint32_t node_num;
 } list_t;
+
+list_t *LIST__create_list(void);
+void LIST__add_node(list_t *list);
+void LIST__delete_node(list_t *list, node_t *node);
+int LIST__list_length(list_t *list);
+node_t *LIST__first_node(list_t *list);
+node_t *LIST__last_node(list_t *list);
+void LIST__delete_all(list_t *list);
 
 #endif // LIST_H_INCLUDED

@@ -3,22 +3,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "list.h"
-#include "linked_list.h"
+#include "node.h"
 
 
 
 
-node_t *LINKED_LIST__create_node(uint32_t value_u)
-{
-    node_t *node = (node_t *)malloc(sizeof(node_t));
-    node->next = NULL;
-    node->prev = NULL;
-    node->value = value_u;
-
-    return node;
-}
-
-list_t *LINKED_LIST__create_list(void)
+list_t *LIST__create_list(void)
 {
     list_t *list = (list_t *)malloc(sizeof(list_t));
     list->head = NULL;
@@ -43,9 +33,9 @@ static inline bool list__is_node_head(node_t *node,list_t *list)
     return (node == list->head);
 }
 
-void LINKED_LIST__add_node(list_t *list)
+void LIST__add_node(list_t *list)
 {
-    node_t *node = LINKED_LIST__create_node(rand());
+    node_t *node = NODE__create_node(rand());
     if (list__is_empty(list))
     {
         list->head = node;
@@ -60,7 +50,7 @@ void LINKED_LIST__add_node(list_t *list)
     list->node_num++;
 }
 
-void LINKED_LIST__delete_node(list_t *list, node_t *node)
+void LIST__delete_node(list_t *list, node_t *node)
 {
     if( false == list__is_empty(list))
     {
@@ -87,42 +77,24 @@ void LINKED_LIST__delete_node(list_t *list, node_t *node)
 
 }
 
-int LINKED_LIST__length(list_t *list)
+int LIST__list_length(list_t *list)
 {
     return list->node_num;
 }
 
-node_t *LINKED_LIST__first_node(list_t *list)
+node_t *LIST__first_node(list_t *list)
 {
     return list->head;
 }
 
-node_t *LINKED_LIST__last_node(list_t *list)
+node_t *LIST__last_node(list_t *list)
 {
     return list->tail;
 }
 
-node_t *LINKED_LIST__next_node(node_t *node, list_t *list)
-{
-    if (list->tail == node)
-        return NULL;
-    return node->next;
-}
-
-node_t *LINKED_LIST__previous_node(node_t *node, list_t *list)
-{
-    if (list->head == node)
-        return NULL;
-    return node->prev;
-}
-
-uint32_t LINKED_LIST__get_node_value(node_t *node)
-{
-    return node->value;
-}
 
 
-void LINKED_LIST__delete_all(list_t *list)
+void LIST__delete_all(list_t *list)
 {
     node_t *temp_node;
     temp_node = list->head;
